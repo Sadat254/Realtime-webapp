@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RealTime Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">📡 RealTime Dashboard</div>
+    <span id="clock"></span>
+  </header>
+
+  <main>
+    <section class="stats-grid">
+      <div class="card" id="card-users">
+        <span class="card-icon">👥</span>
+        <p class="card-label">Active Users</p>
+        <p class="card-value" id="val-users">--</p>
+      </div>
+      <div class="card" id="card-msgs">
+        <span class="card-icon">💬</span>
+        <p class="card-label">Messages</p>
+        <p class="card-value" id="val-msgs">--</p>
+      </div>
+      <div class="card" id="card-uptime">
+        <span class="card-icon">⏱️</span>
+        <p class="card-label">Uptime</p>
+        <p class="card-value" id="val-uptime">--</p>
+      </div>
+      <div class="card" id="card-status">
+        <span class="card-icon">🟢</span>
+        <p class="card-label">Server Status</p>
+        <p class="card-value" id="val-status">--</p>
+      </div>
+    </section>
+
+    <section class="chat-section">
+      <h2>Live Chat</h2>
+      <div class="chat-box" id="chat-box"></div>
+      <form id="chat-form" onsubmit="return false;">
+        <input type="text" id="username" placeholder="Your name" maxlength="20" />
+        <input type="text" id="message" placeholder="Type a message..." maxlength="200" />
+        <button type="submit" onclick="sendMessage()">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
