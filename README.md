@@ -1,76 +1,78 @@
-# 🐍 Python IT Automation Scripts
+ 🌐 RealTime Web Dashboard
 
-> A collection of Python scripts built to automate common IT administration tasks — reducing manual effort and improving efficiency for systems and network administrators.
+> A real-time web application featuring a live stats dashboard and chat system, built with HTML, CSS, JavaScript and PHP. Originally developed as a team project at Kaimosi University.
 
 ---
 
-## 📦 Scripts Included
+ 📌 Overview
 
-### 1. 🔍 Network Ping Scanner (`network_scanner.py`)
-Scans a network range concurrently and reports which devices are online, with hostname resolution and optional report export.
+This application demonstrates real-time data updates without page reloads. It features a live metrics dashboard (active users, message count, server uptime, server status) and a real-time chat interface backed by a PHP API.
 
-**Features:**
-- Concurrent scanning using ThreadPoolExecutor (fast)
-- Hostname resolution for online devices
-- Configurable network range (e.g. `192.168.1.0/24`)
-- Save results to a timestamped report file
-- Progress tracking during scan
+Key features:
+- Live dashboard stats that update every 3 seconds
+- Real-time chat with animated message rendering
+- PHP REST endpoints for stats and chat data
+- Clean, responsive dark-mode UI
+- No external frameworks — pure HTML/CSS/JS + PHP
 
-**Usage:**
-```bash
-# Basic scan
-python network_scanner.py --range 192.168.1.0/24
+---
 
-# Save results to file
-python network_scanner.py --range 192.168.1.0/24 --save
+ 🗂️ Project Structure
 
-# Adjust thread count for speed
-python network_scanner.py --range 10.0.0.0/24 --workers 100
+```
+realtime-webapp/
+├── index.html           Main app page
+├── css/
+│   └── style.css        Responsive dark-mode styles
+├── js/
+│   └── app.js           Frontend logic & live polling
+└── php/
+    ├── stats.php         Returns server stats as JSON
+    └── chat.php          Handles chat messages (GET/POST)
 ```
 
 ---
 
-### 2. 💾 Auto Backup Tool (`auto_backup.py`)
-Backs up files from a source folder to a destination with timestamped versioning, incremental change detection (MD5 hash), and detailed logging.
+ ⚙️ Setup & Running
 
-**Features:**
-- Incremental backup — only copies changed files
-- MD5 hash comparison to detect file changes
-- Timestamped backup folders (`backup_20241015_143022/`)
-- Detailed logs saved to file + printed to console
-- Full backup option available
+ Requirements
+- PHP 7.4+ (with a local server e.g. XAMPP, WAMP, or `php -S`)
+- Any modern web browser
 
-**Usage:**
+ Steps
+
+1. Clone the repo
 ```bash
-# Incremental backup (default)
-python auto_backup.py --src /path/to/source --dest /path/to/backup
+git clone https://github.com/Sadat254/realtime-webapp.git
+cd realtime-webapp
+```
 
-# Full backup (copy everything)
-python auto_backup.py --src /path/to/source --dest /path/to/backup --full
+2. Start a PHP server
+```bash
+php -S localhost:8000
+```
+
+3. Open in browser
+```
+http://localhost:8000
 ```
 
 ---
 
-## ⚙️ Requirements
+ 🛠️ Technologies Used
 
-No external libraries needed — both scripts use Python's standard library only.
-
-- Python 3.8+
-
----
-
-## 🚀 Getting Started
-
-```bash
-git clone https://github.com/Sadat254/python-automation.git
-cd python-automation
-python network_scanner.py --range 192.168.1.0/24
-```
+| Technology | Role |
+|---|---|
+| HTML5 | Structure |
+| CSS3 | Styling & responsive layout |
+| JavaScript (Vanilla) | Live polling, DOM updates, chat |
+| PHP | REST API (stats & chat endpoints) |
+| JSON | Lightweight message storage |
 
 ---
 
-## 👤 Author
+ 👥 Team
 
-**Alvine Sadat**  
-📧 sadatalvine@gmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/alvine-sadat-909b4b215) | [GitHub](https://github.com/Sadat254)
+Built as a university team project at Kaimosi University.  
+Maintained by Alvine Sadat — sadatalvine@gmail.com
+
