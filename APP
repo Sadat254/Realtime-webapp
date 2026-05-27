@@ -1,0 +1,67 @@
+// RealTime Dashboard — app.js
+// Simulates live data updates via polling (replace fetchStats() with real API calls)
+
+let messageCount = 0;
+let uptimeSeconds = 0;
+
+// ── Clock ──────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── Simulated live stats (replace with fetch('/php/stats.php')) ──
+function fetchStats() {
+  const stats = {
+    users: Math.floor(Math.random() * 40) + 10,
+    messages: messageCount,
+    status: "Online",
+  };
+  document.getElementById("val-users").textContent = stats.users;
+  document.getElementById("val-msgs").textContent = stats.messages;
+  document.getElementById("val-status").textContent = stats.status;
+}
+
+// ── Uptime counter ──────────────────────────────────────────
+function updateUptime() {
+  uptimeSeconds++;
+  const h = String(Math.floor(uptimeSeconds / 3600)).padStart(2, "0");
+  const m = String(Math.floor((uptimeSeconds % 3600) / 60)).padStart(2, "0");
+  const s = String(uptimeSeconds % 60).padStart(2, "0");
+  document.getElementById("val-uptime").textContent = `${h}:${m}:${s}`;
+}
+
+setInterval(fetchStats, 3000);
+setInterval(updateUptime, 1000);
+fetchStats();
+
+// ── Chat ────────────────────────────────────────────────────
+function sendMessage() {
+  const nameInput = document.getElementById("username");
+  const msgInput  = document.getElementById("message");
+  const name = nameInput.value.trim() || "Anonymous";
+  const text = msgInput.value.trim();
+  if (!text) return;
+
+  appendMessage(name, text);
+  msgInput.value = "";
+  messageCount++;
+
+  // In production: POST to php/chat.php and poll for new messages
+}
+
+function appendMessage(author, text) {
+  const box  = document.getElementById("chat-box");
+  const div  = document.createElement("div");
+  div.className = "msg";
+  const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  div.innerHTML = `<span class="author">${author}</span>${text}<span class="time">${time}</span>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+// Welcome message
+appendMessage("System", "Welcome to the RealTime Dashboard 👋");
